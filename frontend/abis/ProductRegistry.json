@@ -1,0 +1,918 @@
+{
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_feeReceiver",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "contractAddr",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "status",
+          "type": "bool"
+        }
+      ],
+      "name": "ContractAuthorized",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "ListingFeeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "Paused",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newFeePercent",
+          "type": "uint256"
+        }
+      ],
+      "name": "PlatformFeeUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "stock",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "enum ProductRegistry.Category",
+          "name": "category",
+          "type": "uint8"
+        }
+      ],
+      "name": "ProductCreated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "bool",
+          "name": "isActive",
+          "type": "bool"
+        }
+      ],
+      "name": "ProductStatusChanged",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newPrice",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newStock",
+          "type": "uint256"
+        }
+      ],
+      "name": "ProductUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newAvgRating",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "reviewCount",
+          "type": "uint256"
+        }
+      ],
+      "name": "RatingUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        }
+      ],
+      "name": "SellerVerified",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "newStock",
+          "type": "uint256"
+        }
+      ],
+      "name": "StockUpdated",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "Unpaused",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        }
+      ],
+      "name": "adminDeactivateProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "contractAddr",
+          "type": "address"
+        },
+        {
+          "internalType": "bool",
+          "name": "status",
+          "type": "bool"
+        }
+      ],
+      "name": "authorizeContract",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "authorizedContracts",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "string",
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "imageUrl",
+          "type": "string"
+        },
+        {
+          "internalType": "uint256",
+          "name": "price",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "stock",
+          "type": "uint256"
+        },
+        {
+          "internalType": "enum ProductRegistry.Category",
+          "name": "category",
+          "type": "uint8"
+        }
+      ],
+      "name": "createProduct",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "quantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "decreaseStock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "feeReceiver",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        }
+      ],
+      "name": "getActiveSellerProducts",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address payable",
+              "name": "seller",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "imageUrl",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "stock",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum ProductRegistry.Category",
+              "name": "category",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "isActive",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalSold",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalRating",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "reviewCount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ProductRegistry.Product[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProduct",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address payable",
+              "name": "seller",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "imageUrl",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "stock",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum ProductRegistry.Category",
+              "name": "category",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "isActive",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalSold",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalRating",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "reviewCount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ProductRegistry.Product",
+          "name": "",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "from",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "count",
+          "type": "uint256"
+        }
+      ],
+      "name": "getProductsBatch",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "uint256",
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "internalType": "address payable",
+              "name": "seller",
+              "type": "address"
+            },
+            {
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "internalType": "string",
+              "name": "imageUrl",
+              "type": "string"
+            },
+            {
+              "internalType": "uint256",
+              "name": "price",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "stock",
+              "type": "uint256"
+            },
+            {
+              "internalType": "enum ProductRegistry.Category",
+              "name": "category",
+              "type": "uint8"
+            },
+            {
+              "internalType": "bool",
+              "name": "isActive",
+              "type": "bool"
+            },
+            {
+              "internalType": "uint256",
+              "name": "createdAt",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalSold",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "totalRating",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "reviewCount",
+              "type": "uint256"
+            }
+          ],
+          "internalType": "struct ProductRegistry.Product[]",
+          "name": "",
+          "type": "tuple[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        }
+      ],
+      "name": "getSellerProducts",
+      "outputs": [
+        {
+          "internalType": "uint256[]",
+          "name": "",
+          "type": "uint256[]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getTotalProducts",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "listingFee",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "pause",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "paused",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "platformFeePercent",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "quantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "restoreStock",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newReceiver",
+          "type": "address"
+        }
+      ],
+      "name": "setFeeReceiver",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newFee",
+          "type": "uint256"
+        }
+      ],
+      "name": "setListingFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "newFeePercent",
+          "type": "uint256"
+        }
+      ],
+      "name": "setPlatformFee",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bool",
+          "name": "active",
+          "type": "bool"
+        }
+      ],
+      "name": "setProductStatus",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "unpause",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newPrice",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "newStock",
+          "type": "uint256"
+        },
+        {
+          "internalType": "string",
+          "name": "newDescription",
+          "type": "string"
+        },
+        {
+          "internalType": "string",
+          "name": "newImageUrl",
+          "type": "string"
+        }
+      ],
+      "name": "updateProduct",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "productId",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "totalRating",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "reviewCount",
+          "type": "uint256"
+        }
+      ],
+      "name": "updateRating",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "verifiedSellers",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "seller",
+          "type": "address"
+        }
+      ],
+      "name": "verifySeller",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ]
+}

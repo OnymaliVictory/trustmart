@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+frontend/node_modules/
+agent/node_modules/
+
+# Environment files (NEVER commit these - contains your private key!)
+.env
+frontend/.env.local
+agent/.env
+agent/.env.contracts
+
+# Hardhat
+cache/
+artifacts/
+
+# Next.js
+frontend/.next/
+frontend/out/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Deployments (optional - contains addresses)
+deployments/

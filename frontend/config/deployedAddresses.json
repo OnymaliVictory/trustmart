@@ -1,0 +1,14 @@
+{
+  "network": "unknown",
+  "chainId": 2368,
+  "deployer": "0xDd34F5522Aa7bbc1C4afc60FEfC1FB7e63D15f00",
+  "feeReceiver": "0xDd34F5522Aa7bbc1C4afc60FEfC1FB7e63D15f00",
+  "deployedAt": "2026-05-17T10:52:34.134Z",
+  "contracts": {
+    "ProductRegistry": "0xD93D9E0ccbce2E5aDC4Dc38F3Fde3718dBD830bB",
+    "EscrowOrder": "0xD53baBc5746b24C74d49CFdCd3a39c17302ac5D8",
+    "DisputeResolver": "0x2fb6693bE4F249309D04C245C7091DE0AbFB5980",
+    "ReputationSystem": "0x3BA14e5153d37F42c52754c70999682a7C77C34C",
+    "AttestationRegistry": "0x025D391a64DBC2e7eF91CED885F2E0ED1C83A357"
+  }
+}

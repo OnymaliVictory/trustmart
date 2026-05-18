@@ -151,6 +151,17 @@ export default function SellerDashboard() {
           </Link>
         </div>
 
+        {/* ── SELLER CONTEXT BANNER ─────────────────────── */}
+        <div className="card p-4 border-primary-700/20 bg-primary-700/10 flex items-center gap-3 mb-6 rounded-xl">
+          <div className="w-8 h-8 rounded-lg bg-primary-700/30 flex items-center justify-center flex-shrink-0">
+            <Package size={16} className="text-primary-400" />
+          </div>
+          <div className="flex-1">
+            <p className="text-sm font-semibold text-primary-300">👤 Connected as: Seller</p>
+            <p className="text-xs text-primary-200/80 mt-0.5">You cannot purchase your own listings. Switch to a buyer wallet to complete a purchase.</p>
+          </div>
+        </div>
+
         {/* Network warning */}
         {!isCorrectNetwork && (
           <div className="card p-4 border-warning/20 bg-warning/5 flex items-center gap-3 mb-6">

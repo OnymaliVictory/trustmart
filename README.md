@@ -381,7 +381,7 @@ Open [http://localhost:3000](http://localhost:3000) 🎉
 
 ## 🌐 Live Links
 
-- **App**: http://localhost:3000 (local) or your Vercel URL
+- **App**: [http://localhost:3000](https://trustmart-ruddy.vercel.app/) 
 - **Explorer**: https://testnet.kitescan.ai
 - **Faucet**: https://faucet.kitescan.ai
 

@@ -95,7 +95,7 @@ export default function Footer() {
 
         <div className="border-t border-border mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-xs text-ink-muted">
-            © 2024 TrustMart. Built for Kite Chain Hackathon.
+            © 2026 TrustMart. Built for Kite Chain Hackathon.
           </p>
           <p className="text-xs text-ink-muted">
             Powered by <span className="text-accent-400">Kite Chain</span> · Secured by Smart Contracts

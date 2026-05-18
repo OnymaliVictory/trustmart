@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ShoppingBag, Menu, X, Wallet, ChevronDown, ExternalLink,
-  LogOut, Package, LayoutDashboard, Shield, Zap, AlertTriangle, Copy, Check
+  LogOut, Package, LayoutDashboard, Shield, Zap, AlertTriangle, Copy, Check, ShoppingCart
 } from "lucide-react";
 import { useWallet } from "../context/WalletContext";
 import { CHAIN_ID, EXPLORER_URL } from "../config/chain";
@@ -12,9 +12,9 @@ import { shortAddress, explorerAddressLink, copyToClipboard } from "../utils/hel
 import toast from "react-hot-toast";
 
 const NAV_LINKS = [
-  { href: "/",                 label: "Marketplace" },
-  { href: "/seller/dashboard", label: "Sell" },
-  { href: "/buyer/dashboard",  label: "Orders" },
+  { href: "/",                 label: "Browse Products", icon: ShoppingCart },
+  { href: "/seller/dashboard", label: "Sell Products", icon: Package },
+  { href: "/buyer/dashboard",  label: "My Orders", icon: LayoutDashboard },
 ];
 
 export default function Navbar() {
@@ -60,12 +60,13 @@ export default function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 ${
+                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-150 flex items-center gap-2 ${
                     isActive(link.href)
                       ? "text-white bg-primary-700/20 border border-primary-700/30"
                       : "text-ink-secondary hover:text-white hover:bg-white/5"
                   }`}
                 >
+                  <link.icon size={14} />
                   {link.label}
                 </Link>
               ))}
@@ -162,14 +163,19 @@ export default function Navbar() {
                         </div>
 
                         <div className="space-y-1">
+                          <Link href="/" className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/5 text-sm text-ink-secondary hover:text-white transition-colors"
+                            onClick={() => setWalletOpen(false)}>
+                            <ShoppingCart size={14} />
+                            Browse Products
+                          </Link>
                           <Link href="/buyer/dashboard" className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/5 text-sm text-ink-secondary hover:text-white transition-colors"
                             onClick={() => setWalletOpen(false)}>
-                            <Package size={14} />
+                            <LayoutDashboard size={14} />
                             My Orders
                           </Link>
                           <Link href="/seller/dashboard" className="flex items-center gap-2.5 px-3 py-2 rounded-lg hover:bg-white/5 text-sm text-ink-secondary hover:text-white transition-colors"
                             onClick={() => setWalletOpen(false)}>
-                            <LayoutDashboard size={14} />
+                            <Package size={14} />
                             Seller Dashboard
                           </Link>
                           {isAdmin && (
@@ -229,9 +235,10 @@ export default function Navbar() {
                 {NAV_LINKS.map((link) => (
                   <Link key={link.href} href={link.href}
                     onClick={() => setMobileOpen(false)}
-                    className={`block px-4 py-3 rounded-lg text-sm font-medium ${
+                    className={`flex items-center gap-2.5 px-4 py-3 rounded-lg text-sm font-medium ${
                       isActive(link.href) ? "bg-primary-700/20 text-white" : "text-ink-secondary"
                     }`}>
+                    <link.icon size={14} />
                     {link.label}
                   </Link>
                 ))}
